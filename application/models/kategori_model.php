@@ -1,32 +1,33 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_buku extends CI_Model {
+class Kategori_model extends CI_Model{
 
-    // Ambil semua data buku + kategori
-    public function get_all_buku()
+    private $table = 'kategori';
+
+    //Ambil semua data
+    public function get_all()
     {
-        $this->db->select('buku.*, kategori.nama_kategori');
-        $this->db->from('buku');
-        $this->db->join('kategori', 'kategori.id = buku.id_kategori');
-        return $this->db->get()->result();
+        return $this->db->get($this->table)->result();
     }
-
+    public function get_by_id($id)
+    {
+        $this->db->where('id',$id);
+        return $this->db->get('kategori')->row();
+    }
     // Insert data
     public function insert($data)
     {
-        return $this->db->insert('buku', $data);
+        return $this->db->insert($this->table, $data);
     }
-
-    // Hapus data
     public function delete($id)
     {
-        return $this->db->delete('buku', ['id'=>$id]);
+        return $this->db->delete($this->table, ['id'=>$id]);
+    }
+    public function update($id,$data)
+    {
+        $this->db->where('id',$id);
+        return $this->db->update($this->table, $data);
     }
 
-    // Ambil kategori (buat dropdown)
-    public function get_kategori()
-    {
-        return $this->db->get('kategori')->result();
-    }
 }
