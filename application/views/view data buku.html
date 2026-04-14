@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<script src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+<h2>Data Buku</h2>
+
+<a href="<?= base_url('buku') ?>">+ Tambah Buku</a><br><br>
+
+<table id="tabel" border="1">
+<thead>
+<tr>
+<th>No</th>
+<th>Kode</th>
+<th>Judul</th>
+<th>Penulis</th>
+<th>Kategori</th>
+<th>Stok</th>
+<th>Aksi</th>
+</tr>
+</thead>
+
+<tbody>
+<?php $no=1; foreach($buku as $b){ ?>
+<tr>
+<td><?= $no++ ?></td>
+<td><?= $b->kode_buku ?></td>
+<td><?= $b->judul ?></td>
+<td><?= $b->penulis ?></td>
+<td><?= $b->nama_kategori ?></td>
+<td><?= $b->stok ?></td>
+<td>
+    <a href="<?= base_url('buku/hapus/'.$b->id) ?>">Hapus</a>
+</td>
+</tr>
+<?php } ?>
+</tbody>
+</table>
+
+<script>
+$(document).ready(function(){
+    $('#tabel').DataTable();
+});
+</script>

@@ -12,21 +12,21 @@ class M_buku extends CI_Model {
         return $this->db->get()->result();
     }
 
-    // Insert data
+    // Ambil data kategori (untuk dropdown)
+    public function get_kategori()
+    {
+        return $this->db->get('kategori')->result();
+    }
+
+    // Tambah buku
     public function insert($data)
     {
         return $this->db->insert('buku', $data);
     }
 
-    // Hapus data
+    // Hapus buku
     public function delete($id)
     {
-        return $this->db->delete('buku', ['id'=>$id]);
-    }
-
-    // Ambil kategori (buat dropdown)
-    public function get_kategori()
-    {
-        return $this->db->get('kategori')->result();
+        return $this->db->delete('buku', ['id' => $id]);
     }
 }
